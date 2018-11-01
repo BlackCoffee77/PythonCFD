@@ -26,4 +26,3 @@ for n in range(nt):  #iterate through time
     pyplot.pause(0.05)
     pyplot.clf()
 print(u)
-        
