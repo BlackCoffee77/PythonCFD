@@ -1,2 +1,2 @@
 # PythonCFD
-Based of of work done by Proffesor Lorena A. Barba
+Based of of work done by Professor Lorena A. Barba
