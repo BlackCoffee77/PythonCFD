@@ -1,7 +1,7 @@
 import numpy                 # we're importing numpy 
 from matplotlib import pyplot    # and our 2D plotting library
 
-nx = 81
+nx = 400
 dx = 2 / (nx - 1)
 nt = 2000    #nt is the number of timesteps we want to calculate
 dt = .001  #dt is the amount of time each timestep covers (delta t)
