@@ -11,17 +11,15 @@ phi = (sympy.exp(-(x - 4 * t)**2 / (4 * nu * (t + 1))) +
        sympy.exp(-(x - 4 * t - 2 * sympy.pi)**2 / (4 * nu * (t + 1))))
 
 phiprime = phi.diff(x)
-print(phiprime)
 
 u = -2 * nu * (phiprime / phi) + 4
-print(u)
 
 ufunc = lambdify((t, x, nu), u)
 print(ufunc(1, 4, 3))
 
 nx = 101
-nt = 10000
-nta = 100
+nt = 10000000
+nta = 0
 dx = 2 * numpy.pi / (nx - 1)
 nu = .07
 dt = dx * nu
@@ -43,9 +41,9 @@ for n in range(nt):
     u[0] = un[0] - un[0] * dt / dx * (un[0] - un[-2]) + nu * dt / dx**2 * (un[1] - 2 * un[0] + un[-2])
     u[-1] = u[0]
     
-    pyplot.plot(x,u, marker='o', lw=2, label='Computational')
-    pyplot.plot(x, u_analytical, label='Analytical Max') #The best value Line with no negative forces and stuff
-    pyplot.xlim([0, 2 * numpy.pi])
+    pyplot.plot(x,u, marker='o', lw=2, label='Position: '+ str(n))
+    print(u)
+    pyplot.plot(x, u_analytical, label='Initial Condition')
     pyplot.ylim([0, 10])
     pyplot.legend()
     pyplot.draw()
