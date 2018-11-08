@@ -19,9 +19,8 @@ print(u)
 ufunc = lambdify((t, x, nu), u)
 print(ufunc(1, 4, 3))
 
-###variable declarations
 nx = 101
-nt = 1000
+nt = 10000
 nta = 100
 dx = 2 * numpy.pi / (nx - 1)
 nu = .07
@@ -45,13 +44,10 @@ for n in range(nt):
     u[-1] = u[0]
     
     pyplot.plot(x,u, marker='o', lw=2, label='Computational')
-    pyplot.plot(x, u_analytical, label='Analytical Max')
+    pyplot.plot(x, u_analytical, label='Analytical Max') #The best value Line with no negative forces and stuff
     pyplot.xlim([0, 2 * numpy.pi])
     pyplot.ylim([0, 10])
     pyplot.legend()
     pyplot.draw()
-    pyplot.pause(.05)
+    pyplot.pause(.001)
     pyplot.clf()
-        
-        
-
