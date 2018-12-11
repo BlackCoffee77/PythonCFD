@@ -1,5 +1,4 @@
 from mpl_toolkits.mplot3d import Axes3D    ##New Library required for projected 3d plots
-
 import numpy
 from matplotlib import pyplot, cm
 
