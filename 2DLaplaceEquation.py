@@ -28,14 +28,12 @@ def laplace2d(p, y, dx, dy, l1norm_target):
 
     while l1norm > l1norm_target:
         pn = p.copy()
-        p[1:-1, 1:-1] = ((dy**2 * (pn[1:-1, 2:] + pn[1:-1, 0:-2]) +
-                          dx**2 * (pn[2:, 1:-1] + pn[0:-2, 1:-1])) /
-                         (2 * (dx**2 + dy**2)))
-
-        p[:, 0] = numpy.sin(6*math.pi*y)+1 # p = 0 @ x = 0
-        p[:, -1] = numpy.sin(6*math.pi*y)+1 # p = y @ x = 2
+        p[1:-1, 1:-1] = ((dy**2 * (pn[1:-1, 2:] + pn[1:-1, 0:-2]) + dx**2 * (pn[2:, 1:-1] + pn[0:-2, 1:-1])) / (2 * (dx**2 + dy**2)))
         p[0, :] = p[1, :]  # dp/dy = 0 @ y = 0
         p[-1, :] = p[-2, :]  # dp/dy = 0 @ y = 1
+        p[:, 0] = numpy.sin(6*math.pi*y)+1 # p = 0 @ x = 0
+        p[:, -1] = numpy.sin(6*math.pi*y)+1 # p = y @ x = 2
+      
         l1norm = (numpy.sum(numpy.abs(p[:]) - numpy.abs(pn[:])) / numpy.sum(numpy.abs(pn[:])))
         
         #pictures of every other frame
@@ -45,11 +43,11 @@ def laplace2d(p, y, dx, dy, l1norm_target):
         #     counter += 1
         # iterator +=1
 
-        #pictures of all frames
-        # plot2D(x, y, p, counter)
-        # iterator = 0
-        # counter += 1
-        # iterator +=1
+        # pictures of all frames
+        plot2D(x, y, p, counter)
+        iterator = 0
+        counter += 1
+        iterator +=1
 
     return p
 
@@ -85,8 +83,8 @@ p[:, -1] = numpy.sin(6*numpy.pi*y)+1.0 # p = sin(6piy)+1 @ x = 2
 
 
 
-p = laplace2d(p, y, dx, dy, 1)
-plot2D(x,y,p,0)
-
-# p = laplace2d(p, y, dx, dy, 1e-4)
+# p = laplace2d(p, y, dx, dy, 1)
 # plot2D(x,y,p,0)
+
+p = laplace2d(p, y, dx, dy, 1e-4)
+plot2D(x,y,p,0)
